@@ -1,0 +1,81 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="agendaCtrl" id="content-top" class="conteudo">
+	<div ng-show="detalhe==true" >
+		<div class="titleFilter">
+			<div class="h3">Descrição da Atividade</div>
+		</div>
+		<br>
+		<div class="col-12 col-md-12 granCard">
+			
+			<span>{{agendaDetalhe.description}}</span>
+
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<a ng-click="desativarDetalhar()" class="btn btn-dark "
+						style="color: white !important">Voltar</a>
+		</div>
+	</div>
+	<br>
+	<div ng-show="detalhe==false" class="container-web">
+		<div class="row" style="margin-left: 0px; margin-right: 0px;">
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='todos' ? 'filter1' : 'filter0'}}" ng-click="filtrarTodos();">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Todos</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='dia' ? 'filter1' : 'filter0'}}" ng-click="filtrarDia();" >
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Dia</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a  ng-click="filtrarMes();" class="{{filter =='mes' ? 'filter1' : 'filter0'}}">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Mês</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='ano' ? 'filter1' : 'filter0'}}" ng-click="filtrarAno();">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Ano</span>
+				</a>
+			</div>
+		</div>
+		<div class="titleFilter">
+			<div class="h3">PROGRAMAÇÃO</div>
+		</div>
+		<div class="row justify-content-center" style="padding-right: 20px;">
+			<div class="col-6 col-md-2" ng-repeat="agenda in agendas">
+				<a ng-click="detalhar(agenda)">
+				<div class="{{agenda.done == true ? 'card done' : 'card'}}" >
+					<div class="topCard">
+						<img src="images/bell.png"/>
+						<span class="titleCard">{{agenda.title}}</span>
+					</div>
+					<div class="bottomCard">
+						<span class="strong">{{agenda.when | date:'dd/MM/yyyy'}}</span>
+						<span class="strongAzul">{{agenda.when | date:'HH:mm'}}</span>
+					</div>
+				</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<br>
+	<fullscreen-dialog ng-show="isVisible.loading">
+	<div class="dialog">
+		<div class="content">
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+		</div>
+	</div>
+	</fullscreen-dialog>
+</div>
+

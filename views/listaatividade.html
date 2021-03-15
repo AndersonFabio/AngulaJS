@@ -1,0 +1,64 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="atividadeCtrl" id="content-top" class="conteudo">
+	<br>
+	<div ng-show="index==true" >
+		<div class="row" >
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='todos' ? 'filter1' : 'filter0'}}" ng-click="filtrarTodos();">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Todos</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='dia' ? 'filter1' : 'filter0'}}" ng-click="filtrarDia();" >
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Dia</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a  ng-click="filtrarMes();" class="{{filter =='mes' ? 'filter1' : 'filter0'}}">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Mês</span>
+				</a>
+			</div>
+			<div class="col-6 col-md-3" style="padding-bottom: 20px;">
+				<a class="{{filter =='ano' ? 'filter1' : 'filter0'}}" ng-click="filtrarAno();">
+					<img src="images/filter.png" class="filterImg"/>
+					<span class="filterSpan">Ano</span>
+				</a>
+			</div>
+		</div>
+
+
+		<div class="titleFilter">
+			<div class="h3">ATIVIDADES</div>
+		</div>
+		<br>
+		<div class="container-web">
+		<div class="granCardPainel" ng-repeat="atividade in atividades">
+			<div class="conteudo">
+				<br><br>
+				<p style="text-align: center;"><span class="strong" style="font-size:20px;">{{atividade.title}} - {{atividade.when | date:'dd/MM/yy HH:mm'}}</span></p>
+				<center><img src="http://www.blocomariodeandrade.com.br/home/fotos/{{atividade.url}}" class="img-fluid" style="width: 100%!important;height: auto;"/></center>
+				<br><br>
+			</div>
+		</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<fullscreen-dialog ng-show="isVisible.loading">
+	<div class="dialog">
+		<div class="content">
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+		</div>
+	</div>
+	</fullscreen-dialog>
+	</div>
+</div>
+

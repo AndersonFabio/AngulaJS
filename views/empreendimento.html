@@ -1,0 +1,216 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="empreendimentoCtrl" id="content-top">
+	<div class="row container-web">
+		<div class="col-6 col-md-6 titulo">
+			<span>EMPREENDIMENTO</span>
+		</div>
+		<div class="col-6 col-md-6 user">
+			<img src="images/user.png" class="iconMobile" />&nbsp;<span>{{usuario}}</span>
+		</div>
+	</div>
+	<div ng-show="index==false" class="container-web">
+		<br>
+		<div class="panel-group col-12 col-md-12">
+			<div class="panel panel-dark">
+				<div class="panel-heading">Empreendimento</div>
+				<div class="panel-body">
+					<form novalidate="novalidate">
+						<div class="row">
+							<div class="col-md-6">
+								<label class="control-label" for="inputNomeEmpreendimento">Nome
+									para Pesquisa</label> <input type="text" id="inputNomeEmpreendimento"
+									class="form-control linhaMobile" ng-model="empreendimento.nome" />
+							</div>
+							<div class="col-md-3">
+								<label class="control-label" for="inputTipo">Situação:</label> <select
+									class="form-control linhaMobile" class="selectpicker"
+									title="Selecione..." ng-model="empreendimento.situacao">
+									<option>Disponivel</option>
+									<option>Vendido</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputCep">Cep:</label> <input
+									type="text" id="inputCep" class="form-control linhaMobile"
+									ng-model="empreendimento.cep" ui-mask="99999-999" ng-blur="getCep(empreendimento.cep,1)" />
+							</div>
+							<div class="col-12 col-md-4 ">
+								<label class="control-label" for="inputEndereco">Endereço:</label>
+								<input type="text" id="Endereco"
+									ng-model="empreendimento.endereco"
+									class="form-control linhaMobile " />
+							</div>
+							<div class="col-6 col-md-2 ">
+								<label class="control-label" for="inputNumero">Número</label> <input
+									type="text" id="inputNumero" ng-model="empreendimento.numero"
+									class="form-control linhaMobile " />
+							</div>
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputComplemento">Complemento</label>
+								<input type="text" id="inputComplemento"
+									ng-model="empreendimento.complemento"
+									class="form-control linhaMobile " />
+							</div>
+
+						</div>
+						<div class="row">
+
+							<div class="col-6 col-md-5 ">
+								<label class="control-label" for="inputCidade">Cidade:</label> <input
+									type="text" id="Cidade" class="form-control linhaMobile"
+									ng-model="empreendimento.cidade" />
+							</div>
+							<div class="col-6 col-md-2 ">
+								<label class="control-label" for="inputEstado">Estado:</label> <input
+									type="text" id="Estado" class="form-control linhaMobile"
+									ng-model="empreendimento.estado" />
+							</div>
+							<div class="col-6 col-md-5 ">
+								<label class="control-label" for="inputBairro">Bairro:</label> <input
+									type="text" id="Bairro" class="form-control linhaMobile"
+									ng-model="empreendimento.bairro" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-md-6 ">
+								<label class="control-label" for="inputTelefone">Nome do
+									Proprietário</label> <input type="text" id="inputTelefone"
+									class="form-control linhaMobile"
+									ng-model="empreendimento.nomeProprietario" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputTelefone">Telefone:</label>
+								<input type="text" id="inputTelefone"
+									class="form-control linhaMobile"
+									ng-model="empreendimento.telefone" ui-mask="(99)9?9999-9999" />
+							</div>
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputCelular">Celular:</label>
+								<input type="text" id="inputCelular"
+									class="form-control linhaMobile"
+									ng-model="empreendimento.celular" ui-mask="(99)9?9999-9999" />
+							</div>
+							<div class="col-12 col-md-6 ">
+								<label class="control-label" for="inputEmail">Email:</label> <input
+									type="text" id="inputEmail" class="form-control linhaMobile"
+									ng-model="empreendimento.email" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-md-3">
+								<label class="control-label" for="inputInvestimento">Valor</label>
+								<input type="text" id="inputInvestimento" ng-currency-mask
+									class="form-control linhaMobile"
+									ng-model="empreendimento.valor" />
+							</div>
+							<div class="col-6 col-md-3">
+								<label class="control-label" for="inputData">Data
+									Captação</label> <input type="text" id="inputData" ui-mask="99/99/9999"
+									class="form-control linhaMobile" ng-model="empreendimento.data" />
+							</div>
+							<div class="col-12 col-md-3">
+								<label class="control-label" for="inputOperacao">Operacao</label>
+								<select class="form-control linhaMobile" class="selectpicker"
+									title="Selecione..." ng-model="empreendimento.operacao">
+									<option>Locação</option>
+									<option>Venda</option>
+									<option>Permuta</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-md-12">
+								<label class="control-label" for="inputCaracteristicas">Características</label>
+								<textarea ng-model="empreendimento.caracteristicas"
+									name="Anúncio" class="form-control" rows="6" cols="1000"></textarea>
+							</div>
+						</div>
+
+						<br>
+						<div class="row">
+							<br>
+							<div class="centralizar">
+								<a ng-click="cancelar()" class="btn btn-dark "
+									style="color: white !important">Voltar</a> &nbsp;&nbsp; <a
+									ng-click="salvar(empreendimento)" class="btn btn-dark "
+									style="color: white !important">Salvar</a>
+							</div>
+
+						</div>
+						<div class="row">&nbsp;</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="index==true" class="container-web">
+		<br>
+		<div class="row" style="margin-left: 0px; margin-right: 0px;">
+			<div class='col-10 col-md-11 semMargem'>
+				<input type="text" ng-model='parametro.pesquisar'
+					placeholder="Pesquisar" class="form-control linhaMobile" />
+			</div>
+			<div class="col-2 col-md-1 btn-group semMargem float-right">
+				<button type="button" ng-click="pesquisarPorNome()"
+					class="btn btn-dark btnMobile">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+				&nbsp;
+				<button type="button" ng-click="novo()"
+					class="btn btn-dark btnMobile">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+		<br>
+
+
+
+		<div class="panel-body table-header">
+			<div class="row texto">
+				<div class="col-6 col-md-7">Nome</div>
+				<div class="col-4 col-md-4">Situação</div>
+				<div class="col-2 col-md-1"></div>
+			</div>
+		</div>
+
+		<div class="panel-body" ng-repeat="empreendimento in empreendimentos">
+			<div class="row texto semMargem" style="color: black;">
+				<div class="col-6 col-md-7">{{ empreendimento.nome }}</div>
+				<div class="col-4 col-md-4">{{ empreendimento.situacao }}</div>
+				<div class="col-2 col-md-1 btn-group semMargem float-right">
+					<a ng-click="alterar(empreendimento)"
+						class="btn btn-small btn-dark btnMobile ">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					</a>
+					&nbsp;
+					<button type="button" ng-click="excluir(empreendimento)"
+						class="btn btn-small btn-dark btnMobile ">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="row" style="background: black; height: 2px;">
+				<div class="col-12 col-md-12">&nbsp;</div>
+			</div>
+
+		</div>
+	</div>
+	<fullscreen-dialog ng-show="isVisible.loading">
+	<div class="dialog">
+		<div class="content">
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+		</div>
+	</div>
+	</fullscreen-dialog>
+</div>
+

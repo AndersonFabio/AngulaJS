@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="ngdemoApp">
+<!-- Basic -->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- Site Metas -->
+<title>Bloco Mario de Andrade - BSGI</title>
+<meta name="keywords" content="Soka Gakai, BSGI, Budismo, Nichiren Daishonin, Bloco Mario de Andrade, Praticantes">
+<meta name="description" content="Bloco Mario de Andrade - BSGI">
+<meta name="author" content="Anderson Fábio da Silva & Anderson Fábio da Silva Júnior">
+<link rel="shortcut icon" href="resources/img/favicon.ico"
+	type="image/x-icon" />
+<link rel="apple-touch-icon" href="resources/img/favicon.ico" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/pogo-slider.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.pogo-slider.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/form-validator.min.js"></script>
+<script src="js/contact-form-script.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/images-loded.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="resources/script/mask.min.js"></script>
+ <script src="js/ng-currency-mask.min.js"></script>
+ <script src="js/angular-ui-router.min.js"></script>
+ 
+<script>
+	var app = angular.module('ngdemoApp', [ 'ngRoute', 'ui.mask','ngCurrencyMask','ui.router' ]);
+    var appAgenda = angular.module('ngAgendaApp', [ 'ngRoute', 'ui.mask','ngCurrencyMask','ui.router' ]);
+	var URL = 'http://blocomariodeandrade.com.br:21137';
+    
+    
+	var CONTEXTO = window.location.href.substring(0, window.location.href
+            .indexOf('home') + 7);
+</script>
+<script src="resources/script/app.js"></script>
+
+<script src="resources/script/service/usuarioServiceApp.js"></script>
+<script src="resources/script/controllers/painelController.js"></script>
+<script src="resources/script/controllers/agendaController.js"></script>
+<script src="resources/script/controllers/loginController.js"></script>
+<script src="resources/script/controllers/planoController.js"></script>
+<script src="resources/script/controllers/atividadeController.js"></script>
+<script src="resources/script/controllers/ledController.js"></script>
+<script src="resources/script/controllers/homeController.js"></script>
+<script src="resources/script/controllers/contatoController.js"></script>
+<script src="resources/script/controllers/cadastrarController.js"></script>
+<script src="resources/script/controllers/captacaoController.js"></script>
+<script src="resources/script/controllers/informacaoController.js"></script>
+<script src="resources/script/controllers/novidadeController.js"></script>  
+
+
+</head>
+
+<body ng-controller='homeCtrl' 	data-target="#navbar-wd" >
+
+	<!-- Start header -->
+	<header class="top-header" style="width:100%;" id="header-menu">
+		<div style="width: 100%;">
+		<nav class="navbar header-nav navbar-expand-lg" id="navbar">
+			<div class="container-fluid">
+				<a ng-click="home();" style="font-weight: bold; cursor: pointer;"><img
+					src="images/logo1.png" alt="image"></a>
+				
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbar-wd" aria-controls="navbar-wd"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span></span> <span></span> <span></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbar-wd">
+					<ul class="navbar-nav">
+						<li class="menu"><a ng-class="{'active' : menuItem == 1}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="home(); menuItem = 1">Home <span class="sr-only">(current)</span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 2}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="listaatividade(); menuItem = 2">Atividades <span
+								class="sr-only">(current)</span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 4}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="listanovidade(); menuItem = 4">Novidades<span
+								class="sr-only">(current)</span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 5}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="listainformacao(); menuItem = 4">Informações<span
+								class="sr-only"></span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 5}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="calendario(); menuItem = 4">Programação<span
+								class="sr-only"></span></a></li>
+						<li class="menu"><a class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="login(); menuItem = 4">Administração</a></li>
+					</ul>
+				</div>
+
+
+				<!--<a ng-click="login()"" id="Notification">
+					<img src="images/bell.png" alt="Notificação" />
+					<span>{{lateCount}}</span>
+			    </a>-->
+			</div>
+		</nav>
+	</div>
+	</header>
+	
+	<!-- End header -->
+
+	<div ng-view ng-init="home()"></div>
+
+
+	<script src="js/script.js"></script>
+
+<div class="footer">
+	<div class="row conteudo">
+		<div class="col-md-12 col-lg-12 ">
+			<br>
+			<p style="text-align:center;font-size:15px;font-weight:bold;">
+			Este Site pertence aos membros do Bloco Mário de Andrade - RM Praia Grande (SP) praticantes do Budismo Nitiren Daishonin (BSGI). </p>
+			<p>Todo seu conteúdo tem caráter meramente informativo de interesse dos membros e sem fins lucrativos.
+			</p>
+			<br>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

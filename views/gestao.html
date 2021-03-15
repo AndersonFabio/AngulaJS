@@ -1,0 +1,92 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body ng-controller='gestaoCtrl' id="dialog" data-spy="scroll"
+	data-target="#navbar-wd" data-offset="98">
+
+	<!-- Start header -->
+	<header class="top-header" style="width:100%;" id="header-menu">
+		<div style="width: 100%;">
+		<nav class="navbar header-nav navbar-expand-lg" id="navbar">
+			<div class="container-fluid">
+				<a ng-click="home();" style="font-weight: bold; cursor: pointer;"><img
+					src="images/logo1.png" alt="image"></a>
+				
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbar-wd" aria-controls="navbar-wd"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span></span> <span></span> <span></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbar-wd">
+					<ul class="navbar-nav">
+						<li class="menu"><a ng-class="{'active' : menuItem == 1}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="home(); menuItem = 1">Home <span class="sr-only">(current)</span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 2}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="demo(); menuItem = 2">Atividades <span
+								class="sr-only">(current)</span></a></li>
+						<!-- <li><a ng-class="{'active' : menuItem == 3}"
+							class="nav-link paraotopo"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="plano(); menuItem = 3">Planos <span class="sr-only">(current)</span></a></li> -->
+						<li class="menu"><a ng-class="{'active' : menuItem == 4}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="contato(); menuItem = 4">Novidades<span
+								class="sr-only">(current)</span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 5}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="cadastrar(); menuItem = 4">Informações<span
+								class="sr-only"></span></a></li>
+						<li class="menu"><a ng-class="{'active' : menuItem == 5}"
+							class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="cadastrar(); menuItem = 5">Agenda<span
+								class="sr-only"></span></a></li>
+						<li class="menu"><a class="nav-link paraotopo dividir"
+							style="font-weight: bold; cursor: pointer !important;"
+							ng-click="login(); menuItem = 6">Administração</a></li>
+					</ul>
+				</div>
+
+
+				<!--<a ng-click="login()"" id="Notification">
+					<img src="images/bell.png" alt="Notificação" />
+					<span>{{lateCount}}</span>
+			    </a>-->
+			</div>
+		</nav>
+	</div>
+	</header>
+	
+	<!-- End header -->
+
+	<div ng-view ng-init="homeGestao()"></div>
+
+
+	<script src="js/script.js"></script>
+
+<div class="footer">
+	<div class="row conteudo">
+		<div class="col-md-12 col-lg-12 ">
+			<br>
+			<p style="text-align:center;font-size:15px;font-weight:bold;">
+			Este Site pertence aos membros do Bloco Mário de Andrade - RM Praia Grande (SP) praticantes do Budismo Nitiren Daishonin (BSGI). </p>
+			<p>Todo seu conteúdo tem caráter meramente informativo de interesse dos membros e sem fins lucrativos.
+			</p>
+			<br>
+		</div>
+	</div>
+
+</div>
+</body>
+</div>

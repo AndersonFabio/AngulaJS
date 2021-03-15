@@ -1,0 +1,59 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="loginCtrl" id="content-top">
+	<br>
+	<div class="conteudo">
+		<div class="row">
+			<div class="col-12 col-md-12">
+				<div>
+					<div class="panel-group col-12 col-md-6 offset-md-3">
+						<div class="panel panel-dark">
+							<div class="panel-heading">Acesso a Administração do Site</div>
+							<div class="panel-body">
+								<form novalidate="novalidate">
+									<div class="row">
+										<div class="col-12 col-md-12">
+											<label class="control-label" for="inputLogin">Login</label> <input
+												type="text" id="inputLogin" ng-model="login.login"
+												class="form-control linhaMobile" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 col-md-12 ">
+											<label class="control-label" for="inputSenha">Senha</label> <input
+												type="password" id="inputSenha" ng-model="login.senha"
+												class="form-control linhaMobile " />
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="centralizar">
+											<a ng-click="logar(login)" class="btn btn-dark"
+												style="color: white !important; cursor: pointer;">Login</a>
+											&nbsp;&nbsp; <a ng-click="cancelar()" class="btn btn-dark"
+												style="color: white !important; cursor: pointer;">Cancelar</a>
+										</div>
+									</div>
+									<div class="row">&nbsp;</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<fullscreen-dialog ng-show="isVisible.loading">
+    <div class="dialog">
+      <div class="content">
+        <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+      </div>
+    </div>
+  </fullscreen-dialog>
+</div>
+<p></p>

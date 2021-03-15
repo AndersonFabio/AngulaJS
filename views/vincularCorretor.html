@@ -1,0 +1,69 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="gestaoCtrl" id="content-top">
+	<div class="container-web">
+		<div class="row container-web">
+			<div class="col-6 col-md-6 titulo">
+				<span>GESTÃO DE EQUIPE</span>
+			</div>
+			<div class="col-6 col-md-6 user">
+				<img src="images/user.png" class="iconMobile" />&nbsp;<span>{{usuario}}</span>
+			</div>
+		</div>
+		<br>
+		<div>
+			<form novalidate="novalidate">
+				<div class="panel-group col-12 col-md-6 offset-md-3">
+					<div class="panel panel-dark">
+						<div class="panel-heading">VINCULAR CORRETOR/SUPERVISOR</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-12 col-md-12">
+									<label class="control-label" for="inputLogin">Login do
+										Corretor/Supervisor</label> <input type="text" id="inputNome"
+										ng-model="loginCorretor.email"
+										class="form-control linhaMobile" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 col-md-12 ">
+									<label class="control-label" for="inputsenha">Senha</label> <input
+										type="password" id="inputSenha" ng-model="loginCorretor.senha"
+										class="form-control linhaMobile " />
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="centralizar">
+									<a ng-click="vincularCorretor()" class="btn btn-dark"
+										style="color: white !important; cursor: pointer;">Incluir</a>
+								</div>
+							</div>
+							<div class="row">&nbsp;</div>
+
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- end section -->
+
+
+
+
+
+<fullscreen-dialog ng-show="isVisible.loading">
+<div class="dialog">
+	<div class="content">
+		<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+	</div>
+</div>
+</fullscreen-dialog>
+</div>

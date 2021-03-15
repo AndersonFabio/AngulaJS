@@ -1,0 +1,241 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script>
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '283852379531084',
+      xfbml      : true,
+      version    : 'v7.0'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function subscribeApp(page_id, page_access_token) {
+    console.log('Subscribing page to app! ' + page_id);
+    FB.api(
+      '/' + page_id + '/subscribed_apps',
+      'post',
+      {access_token: page_access_token, subscribed_fields: ['feed','leadgen']},
+      function(response) {
+    	//var posting = $.post( "https://www.capiteweb.com.br/CapiteWeb/rest/facebookRegister", { "response": response} );
+    	//alert(response);
+        console.log('Successfully subscribed page', response);
+      }
+    );
+  }
+    
+  // Only works after `FB.init` is called
+  function myFacebookLogin() {
+    FB.login(function(response){
+      console.log('Successfully logged in', response);
+      FB.api('/me/accounts', function(response) {
+    	console.log('id: ',response.data[0].id);
+    	
+    	var jsonStr = JSON.parse('{"data":[]}');
+    	var idEmpresa = getCookie("CapiteWebIdEmpresa");
+    	for (var i = 0, len = response.data.length; i < len; i++) {
+    		var id = {"id":response.data[i].id,"access_token":response.data[i].access_token,"idEmpresa":idEmpresa};
+    		jsonStr['data'].push(id);	
+    	}
+    	
+    	
+    	 console.log("Json ",JSON.stringify(jsonStr));
+    	
+	      $.ajax({
+	          url: "https://www.capiteweb.com.br/CapiteWeb/rest/facebook/register",
+	          type: 'post',
+	          dataType: 'json',
+	          contentType: 'application/json',
+	          success: function (data) {
+	             console.log("Response: ",data.response);
+	          },
+	          data: JSON.stringify(jsonStr)
+	      });
+     
+//     	var posting = $.post( ,
+//     			dataType: 'json',
+//                 contentType: 'application/json',
+//                 data: JSON.stringify(id);
+        console.log('Successfully retrieved pages', response);
+        var pages = response.data;
+        var ul = document.getElementById('list');
+        for (var i = 0, len = pages.length; i < len; i++) {
+          var page = pages[i];
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = "#";
+          a.onclick = subscribeApp.bind(this, page.id, page.access_token);
+          a.innerHTML = page.name;
+          li.appendChild(a);
+          ul.appendChild(li);
+        }
+      });
+    }, {scope: 'pages_show_list'});
+  }
+  
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0; i<ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1);
+	        if (c.indexOf(name) == 0) {
+	            return c.substring(name.length, c.length);
+	        }
+	    }
+	    return "";
+	}
+</script>
+</head>
+<div ng-constroller="formLeadgenCtrl" id="content-top">
+		<div class="row container-web">
+		<div class="col-6 col-md-6 titulo">
+			<span><img src="images/facebook.png" class="iconMobile" />&nbsp;FORM LEADGEN</span>
+		</div>
+		<div class="col-6 col-md-6 user">
+			<img src="images/user.png" class="iconMobile" />&nbsp;<span>{{usuario}}</span>
+		</div>
+	</div>
+	<br>
+	<div class="container-web">
+		<button onclick="myFacebookLogin()" class="btn btn-dark "
+			style="color: white !important">Conectar ao FaceBook</button>
+	</div>
+	<div ng-show="index==false" class="container-web">
+		<br>
+		<div class="panel-group col-12 col-md-12">
+			<div class="panel panel-dark">
+				<div class="panel-heading">Form Leadgen</div>
+				<div class="panel-body">
+					<form novalidate="novalidate">
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputNomeFormLeadgen">Nome
+									do Form</label> <input type="text" id="inputNomeFormLeadgen"
+									class="form-control linhaMobile" ng-model="formLeadgen.nomeForm" />
+							</div>
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="clienteSituacao">Situação</label>
+
+								<select class="form-control linhaMobile selectpicker"
+									ng-model="formLeadgen.idSituacao" id="idSituacao">
+									<option value="" class="linhaMobile">Selecione...</option>
+									<option ng-repeat="option in situacoes" value="{{option.id}}"
+										ng-selected="option.id == formLeadgen.idSituacao">{{option.nome}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="empreendimento">Empreendimento</label>
+
+								<select class="form-control linhaMobile selectpicker"
+									ng-model="formLeadgen.idEmpreendimento" id="empreendimento">
+									<option value="" class="linhaMobile">Selecione...</option>
+									<option ng-repeat="option in empreendimentos"
+										value="{{option.id}}"
+										ng-selected="option.id == formLeadgen.idEmpreendimento">{{option.nome}}</option>
+								</select>
+							</div>
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputCorretor">Corretor</label>
+								<select class="form-control linhaMobile selectpicker"
+									ng-model="formLeadgen.idCorretor" name="jobTitle" required>
+									<option value="">Selecione...</option>
+									<option ng-repeat="option in corretores" value="{{option.id}}">{{option.nome}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-12 col-md-6 ">
+								<label class="control-label" for="inputIdFormLeadgen">ID
+									Form Leadgen:</label> <input type="text" id="inputIdFormLeadgen"
+									class="form-control linhaMobile" ng-disabled="true"
+									ng-model="formLeadgen.idForm" />
+							</div>
+						</div>
+
+						<br>
+						<div class="row">
+							<br>
+							<div class="centralizar">
+								<a ng-click="cancelar()" class="btn btn-dark "
+									style="color: white !important">Voltar</a> &nbsp;&nbsp; <a
+									ng-click="salvar(formLeadgen)" class="btn btn-dark "
+									style="color: white !important">Salvar</a>
+							</div>
+
+						</div>
+						<div class="row">&nbsp;</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="index==true" class="container-web">
+		<br>
+		<div class="row" style="margin-left: 0px; margin-right: 0px;">
+			<div class='col-10 col-md-11 semMargem'>
+				<input type="text" ng-model='parametro.pesquisar'
+					placeholder="Pesquisar" class="form-control linhaMobile" />
+			</div>
+			<div class="col-2 col-md-1 btn-group semMargem float-right">
+				<button type="button" ng-click="pesquisarPorNome()"
+					class="btn btn-dark btnMobile">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+		<br>
+
+
+
+		<div class="panel-body table-header">
+			<div class="row texto">
+				<div class="col-5 col-md-6">ID Form Leadgen</div>
+				<div class="col-5 col-md-5">Nome Form</div>
+				<div class="col-2 col-md-1"></div>
+			</div>
+		</div>
+
+		<div class="panel-body" ng-repeat="formLeadgen in formLeadgens">
+			<div class="row texto semMargem" style="color: black;">
+				<div class="col-5 col-md-6">{{ formLeadgen.idForm }}</div>
+				<div class="col-5 col-md-5">{{ formLeadgen.nomeForm }}</div>
+				<div class="col-2 col-md-1 btn-group semMargem float-right">
+					<a ng-click="alterar(formLeadgen)"
+						class="btn btn-small btn-dark btnMobile "> <span
+						class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					</a> &nbsp;
+					<button type="button" ng-click="excluir(formLeadgen)"
+						class="btn btn-small btn-dark btnMobile ">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="row" style="background: black; height: 2px;">
+				<div class="col-12 col-md-12">&nbsp;</div>
+			</div>
+
+		</div>
+	</div>
+	<fullscreen-dialog ng-show="isVisible.loading">
+	<div class="dialog">
+		<div class="content">
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+		</div>
+	</div>
+	</fullscreen-dialog>
+</div>
+

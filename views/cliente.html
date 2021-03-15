@@ -1,0 +1,329 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<div ng-constroller="clienteCtrl" id="content-top">
+
+	<div class="row container-web">
+		<div class="col-6 col-md-6 titulo">
+			<span style="font-weight: bold;">CLIENTES {{clientes.length}}/{{totalRegistros}}</span>
+		</div>
+		<div class="col-6 col-md-6 user">
+			<img src="images/user.png" class="iconMobile" />&nbsp;<span>{{usuario}}</span>
+		</div>
+	</div>
+
+	<div ng-show="index==false" class="container-web">
+		<br>
+		<div class="panel-group col-12 col-md-12">
+			<div class="panel panel-dark">
+				<div class="panel-heading">Cliente</div>
+				<div class="panel-body">
+					<form novalidate="novalidate">
+						<div class="row">
+							<div class="col-2 col-md-1">
+								<label class="control-label" for="inputidCliente">ID</label> <input
+									type="text" id="inputidCliente" ng-disabled="true"
+									class="form-control linhaMobile" ng-model="cliente.id" />
+							</div>
+							<div class="col-10 col-md-5">
+								<label class="control-label" for="inputNomeCliente">Nome</label>
+								<input type="text" id="inputNomeCliente"
+									class="form-control linhaMobile" ng-model="cliente.nome" />
+							</div>
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputEmailCliente">Email</label>
+								<input type="text" id="inputEmailCliente"
+									class="form-control linhaMobile" ng-model="cliente.email" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputCepCliente">Cep</label> <input
+									type="text" id="inputCepCliente"
+									class="form-control linhaMobile" ng-model="cliente.cep"
+									ng-blur="getCep(cliente.cep,1)" ui-mask="99999-999" />
+							</div>
+
+							<div class="col-12 col-md-6 ">
+								<label class="control-label" for="inputEnderecoCliente">Endereço:</label>
+								<input type="text" id="Endereco"
+									ng-model="cliente.endereco" class="form-control linhaMobile " />
+							</div>
+							<div class="col-6 col-md-2 ">
+								<label class="control-label" for="inputNumeroCliente">Número</label>
+								<input type="text" id="inputNumeroCliente"
+									ng-model="cliente.numero" class="form-control linhaMobile " />
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputComplementoCliente">Complemento</label>
+								<input type="text" id="inputComplementoCliente"
+									ng-model="cliente.complemento"
+									class="form-control linhaMobile " />
+							</div>
+
+							<div class="col-6 col-md-4 ">
+								<label class="control-label" for="inputCidadeCliente">Cidade</label>
+								<input type="text" id="Cidade"
+									class="form-control linhaMobile" ng-model="cliente.cidade" />
+							</div>
+							<div class="col-6 col-md-1 ">
+								<label class="control-label" for="inputEstadoCliente">Estado</label>
+								<input type="text" id="Estado"
+									class="form-control linhaMobile" ng-model="cliente.estado" />
+							</div>
+							<div class="col-6 col-md-4 ">
+								<label class="control-label" for="inputBairroCliente">Bairro</label>
+								<input type="text" id="Bairro"
+									class="form-control linhaMobile" ng-model="cliente.bairro" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputCpfCliente">CPF</label> <input
+									type="text" id="inputCpf" class="form-control linhaMobile"
+									ng-model="cliente.cpf" ui-mask="999.999.999-99" />
+							</div>
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputRGCliente">RG</label> <input
+									type="text" id="inputRGCliente"
+									class="form-control linhaMobile" ng-model="cliente.rg"
+									ui-mask="99.999.999-*" />
+							</div>
+							<div class="col-6 col-md-3 ">
+								<label class="control-label" for="inputDTNascCliente">DT.Nasc.</label>
+								<input type="text" id="inputDTNascCliente"
+									class="form-control linhaMobile"
+									ng-model="cliente.dataNascimento" ui-mask="99/99/9999" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-3">
+								<label class="control-label" for="inputProfissao">Profissão</label>
+								<input type="text" id="inputProfissao"
+									class="form-control linhaMobile" ng-model="cliente.profissao" />
+							</div>
+							<div class="col-6 col-md-3">
+								<label class="control-label" for="inputRenda">Renda</label> <input
+									ng-currency-mask type="text" id="inputRenda"
+									class="form-control linhaMobile" ng-model="cliente.renda" />
+							</div>
+							<div class="col-6 col-md-3">
+								<label class="control-label" for="inputEntrada">Entrada</label>
+								<input ng-currency-mask type="text" id="inputEntrada"
+									class="form-control linhaMobile" ng-model="cliente.entrada" />
+							</div>
+							<div class="col-6 col-md-3">
+								<label class="control-label" for="inputFGTS">FGTS</label> <input
+									ng-currency-mask type="text" id="inputFGTS"
+									class="form-control linhaMobile" ng-model="cliente.fgts" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputContato">Contato-1</label>
+								<input type="text" id="inputContato"
+									class="form-control linhaMobile" ng-model="cliente.contato1" />
+							</div>
+							<div class="col-10 col-md-3">
+								<label class="control-label" for="inputFone1">Telefone-1</label>
+								<input type="text" id="inputFone1"
+									class="form-control linhaMobile" ng-model="cliente.fone1"
+									ui-mask="(99)9?9999-9999" />
+							</div>
+
+							<div class="col-2 col-md-3 esquerda">
+								<p>
+									<label class="control-label" for="inputWhatsApp">Zap</label>
+								</p>
+								<p>
+									<input type="checkbox" id="inputWhatsApp" style="width: 20px;"
+										class="form-control linhaMobile" ng-model="cliente.whatsapp1" />
+								</p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputContato2">Contato-2</label>
+								<input type="text" id="inputContato2"
+									class="form-control linhaMobile" ng-model="cliente.contato2" />
+							</div>
+
+							<div class="col-10 col-md-3">
+								<label class="control-label" for="inputFone2">Telefone-2</label>
+								<input type="text" id="inputFone2"
+									class="form-control linhaMobile" ng-model="cliente.fone2"
+									ui-mask="(99)9?9999-9999" />
+							</div>
+							<div class="col-2 col-md-3 esquerda">
+								<p>
+									<label class="control-label" for="inputWhatsApp2">Zap</label>
+								</p>
+								<p>
+									<input type="checkbox" id="inputWhatsApp2"
+										class="form-control linhaMobile" ng-model="cliente.whatsapp2"
+										style="width: 20px;" />
+								</p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputContato3">Contato-3</label>
+								<input type="text" id="inputContato3"
+									class="form-control linhaMobile" ng-model="cliente.contato3" />
+							</div>
+
+							<div class="col-10 col-md-3">
+								<label class="control-label" for="inputFone3">Telefone-3</label>
+								<input type="text" id="inputFone3"
+									class="form-control linhaMobile" ng-model="cliente.fone3"
+									ui-mask="(99)9?9999-9999" />
+							</div>
+							<div class="col-2 col-md-3 esquerda">
+								<p>
+									<label class="control-label" for="inputWhatsApp3">Zap</label>
+								</p>
+								<p>
+									<input type="checkbox" id="inputWhatsApp3"
+										class="form-control linhaMobile" ng-model="cliente.whatsapp3"
+										style="width: 20px;" />
+								</p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputCorretor">Corretor</label>
+								<select class="form-control linhaMobile selectpicker"
+									ng-model="cliente.idCorretor" name="jobTitle" required>
+									<option value="">Selecione...</option>
+									<option ng-repeat="option in corretores" value="{{option.id}}">{{option.nome}}</option>
+								</select>
+							</div>
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputCaptador">Captador</label>
+								<select class="form-control linhaMobile selectpicker"
+									ng-model="cliente.idCaptador" name="jobTitle3" required>
+									<option value="">Selecione...</option>
+									<option ng-repeat="option in captadores" value="{{option.id}}">{{option.nome}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+
+							<div class="col-12 col-md-6">
+								<label class="control-label" for="inputSituacao">Midia:</label>
+								
+								<select class="form-control linhaMobile" class="selectpicker"
+									ng-model="cliente.idMidia">
+									<option value="">Selecione...</option>
+									<option ng-repeat="option in midias" value="{{option.id}}" ng-selected="option.id == cliente.idMidia" >{{option.nome}}</option>
+								</select>
+							</div>
+							<div class="col-6 col-md-6">
+								<label class="control-label" for="inputSituacao">Situação:</label>
+								
+								<select class="form-control linhaMobile" class="selectpicker"
+									ng-model="cliente.idSituacao">
+									<option value="">Selecione...</option>
+									<option ng-repeat="option in situacoes" value="{{option.id}}" ng-selected="option.id == cliente.idSituacao" >{{option.nome}}</option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<br>
+							<div class="centralizar">
+								<a ng-click="cancelar()" class="btn btn-dark "
+									style="color: white !important">Voltar</a> &nbsp;&nbsp; <a
+									ng-click="salvar(cliente)" class="btn btn-dark "
+									style="color: white !important">Salvar</a>
+							</div>
+
+						</div>
+						<div class="row">&nbsp;</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="index==true" class="container-web">
+		<br>
+		<div class="row" style="margin-left: 0px; margin-right: 0px;">
+			<div class='col-6 col-md-9 semMargem'>
+				<input type="text" ng-model='parametro.pesquisar'
+					placeholder="Pesquisar" class="form-control linhaMobile" />
+			</div>
+			<div class="col-4 col-md-2">
+				<select class="form-control linhaMobile selectpicker"
+					ng-model="cliente.idSituacao" id="clienteSituacao" ng-change="pesquisarPorNome()" >
+					<option value="" class="linhaMobile">Selecione...</option>
+					<option ng-repeat="option in situacoes" value="{{option.id}}"
+						ng-selected="option.id == agenda.cliente.idSituacao" placeholder="Situação">{{option.nome}}</option>
+				</select>
+			</div>
+			<div class="col-2 col-md-1 btn-group semMargem float-right">
+				<button type="button" ng-click="pesquisarPorNome()"
+					class="btn btn-dark btnMobile">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+				&nbsp;
+				<button type="button" ng-click="novo()"
+					class="btn btn-dark btnMobile">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+		<br>
+
+
+
+		<div class="panel-body table-header">
+			<div class="row texto">
+				<div class="col-2 col-md-1">ID</div>
+				<div class="col-5 col-md-6">Nome</div>
+				<div class="col-3 col-md-4">Situação</div>
+				<div class="col-2 col-md-1"></div>
+			</div>
+		</div>
+
+		<div class="panel-body" ng-repeat="cliente in clientes">
+			<div class="row texto semMargem" style="color: black;">
+				<div class="col-2 col-md-1">{{cliente.id}}</div>
+				<div class="col-5 col-md-6">{{ cliente.nome }}</div>
+				<div class="col-3 col-md-4">{{ cliente.situacao.nome }}</div>
+				<div class="col-2 col-md-1 btn-group semMargem float-right">
+					<a ng-click="alterar(cliente)"
+						class="btn btn-small btn-dark btnMobile ">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					</a>
+					&nbsp;
+					<button type="button" ng-click="excluir(cliente)"
+						class="btn btn-small btn-dark btnMobile ">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="row" style="background: black; height: 2px;">
+				<div class="col-12 col-md-12">&nbsp;</div>
+			</div>
+
+		</div>
+	</div>
+	<fullscreen-dialog ng-show="isVisible.loading">
+	<div class="dialog">
+		<div class="content">
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+		</div>
+	</div>
+	</fullscreen-dialog>
+</div>
+

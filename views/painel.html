@@ -1,0 +1,63 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="js/script.js"></script>
+</head>
+
+<div ng-constroller="painelCtrl" id="content-top">
+	<br>
+	<div class="container-web">
+		<div class="row container-web">
+			<div class="col-6 col-md-6 titulo">
+				<span>ADMINISTRAÇÃO</span>
+			</div>
+			<div class="col-6 col-md-6 user">
+				<img src="images/user.png" class="iconMobile" />&nbsp;<span>ADM</span>
+			</div>
+		</div>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-5 col-md-2"
+					style="text-align: center; cursor: pointer;padding-bottom: 20px;">
+					<button ng-disabled="corretor" ng-click="atividade()" class="btn btn-dark"
+						style="width: 100%; height: 100%;"><p style="height: 10px;">
+							<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+						</p>
+						<p style="height: 10px;">Manutenção</p>
+						<p style="height: 10px;">Atividades</p></button>
+				</div>
+				<div class="col-2 col-md-1"></div>
+				<div class="col-5 col-md-2" style="text-align: center; cursor: pointer;padding-bottom: 20px;">
+					<button  ng-click="novidade()" class="btn btn-dark"
+						style="width: 100%; height: 100%;"><p style="height: 10px;">
+							<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+						</p>
+						<p style="height: 10px;">Manutenção</p>
+						<p style="height: 10px;">Novidades</p></button>
+				</div>
+				<div class="hidden col-md-2"></div>
+				<div class="col-5 col-md-2" style="text-align: center; cursor: pointer;padding-bottom: 20px;">
+					<a ng-click="informacao()" class="btn btn-dark"
+						style="width: 100%; height: 100%;"><p style="height: 10px;">
+							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						</p>
+						<p style="height: 10px;">Manutenção</p>
+						<p style="height: 10px;">Informações</p></a>
+				</div>
+				<div class="col-2 col-md-1"></div>
+				<div class="col-5 col-md-2" style="text-align: center; cursor: pointer;padding-bottom: 20px;">
+					<button ng-disabled="corretor" ng-click="agenda()" class="btn btn-dark"
+						style="width: 100%; height: 100%;"><p style="height: 10px;">
+							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+						</p>
+						<p style="height:10px;">Manutenção</p>
+						<p style="height:10px;">Programação</p></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+</div>

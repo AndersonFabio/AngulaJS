@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt" ng-app="ngdemoApp">
+<!-- Basic -->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- Site Metas -->
+<title>Bloco Mario de Andrade - BSGI</title>
+<meta name="keywords" content="Sistema Para Corretor,crm, agenda de corretores, agenda, cadastro de clientes, cadastro de imóveis, agendamento de clientes, sistema para imobiliaria">
+<meta name="description" content="Sistema Para Corretores">
+<meta name="author" content="Anderson Fábio da Silva">
+<link rel="shortcut icon" href="resources/img/favicon.ico"
+	type="image/x-icon" />
+<link rel="apple-touch-icon" href="resources/img/favicon.ico" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/pogo-slider.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.pogo-slider.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/form-validator.min.js"></script>
+<script src="js/contact-form-script.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/images-loded.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="resources/script/mask.min.js"></script>
+ <script src="js/ng-currency-mask.min.js"></script>
+ <script src="js/angular-ui-router.min.js"></script>
+ 
+<script>
+	var app = angular.module('ngdemoApp', [ 'ngRoute', 'ui.mask','ngCurrencyMask','ui.router' ]);
+    var appAgenda = angular.module('ngAgendaApp', [ 'ngRoute', 'ui.mask','ngCurrencyMask','ui.router' ]);
+	var URL = 'http://blocomariodeandrade.com.br:21137';
+    
+    
+	var CONTEXTO = window.location.href.substring(0, window.location.href
+            .indexOf('home') + 5);
+</script>
+<script src="resources/script/app.js"></script>
+
+<script src="resources/script/service/usuarioServiceApp.js"></script>
+<script src="resources/script/controllers/painelController.js"></script>
+<script src="resources/script/controllers/agendaController.js"></script>
+<script src="resources/script/controllers/loginController.js"></script>
+<script src="resources/script/controllers/planoController.js"></script>
+<script src="resources/script/controllers/atividadeController.js"></script>
+<script src="resources/script/controllers/ledController.js"></script>
+<script src="resources/script/controllers/homeController.js"></script>
+<script src="resources/script/controllers/contatoController.js"></script>
+<script src="resources/script/controllers/cadastrarController.js"></script>
+<script src="resources/script/controllers/captacaoController.js"></script>
+</head>
+
+<body ng-controller='homeCtrl' id="dialog" data-spy="scroll"
+	data-target="#navbar-wd" data-offset="98">
+
+	<!-- Start header -->
+	<header class="top-header" style="width:100%;" id="header-menu">
+		<div style="width: 100%;">
+		<nav class="navbar header-nav navbar-expand-lg" id="navbar">
+			<div class="container-fluid">
+				<a ng-click="home();" style="font-weight: bold; cursor: pointer;"><img
+					src="images/logo1.png" alt="image"></a>
+			</div>
+		</nav>
+	</div>
+	</header>
+
+<div  id="content-top" class="conteudo" ng-controller='homeCtrl'></div>
+	<form action="http://blocomariodeandrade.com.br:21137/upload" method="post" enctype="multipart/form-data">
+		<input type="file" name="filetoupload"><br>
+		<input type="hidden" name="teste" value="http://localhost/home/upload.html">
+		<input type="submit">
+	</form>
+	<a ng-click="redirect()">Voltar</a>
+
+</div>
+<script src="js/script.js"></script>
+<div class="footer">
+	<div class="row conteudo">
+		<div class="col-md-12 col-lg-12 ">
+			<br>
+			<p style="text-align:center;font-size:15px;font-weight:bold;">
+			Este Site pertence aos membros do Bloco Mário de Andrade - RM Praia Grande (SP) praticantes do Budismo Nitiren Daishonin (BSGI). </p>
+			<p>Todo seu conteúdo tem caráter meramente informativo de interesse dos membros e sem fins lucrativos.
+			</p>
+			<br>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>
