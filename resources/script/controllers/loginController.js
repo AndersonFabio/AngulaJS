@@ -9,13 +9,13 @@ app.controller('loginCtrl', [ '$scope', '$location','$http','$rootScope','usuari
 			
 			$scope.logar = function (login) {
 				$rootScope.isVisible.loading = true;
-				if(login.login == 'admin' && login.senha == 'bsgi') {
+				if(login.login == '' && login.senha == '') {
 					login.email = login.login;
 					login.cargo = "Imobiliaria";
 					usuarioService.salvarLogin(login);
 					$location.path('/painel');
 					
-				} else if(login.login == 'membro' && login.senha == 'bsgi') {
+				} else if(login.login == '' && login.senha == '') {
 					login.email = login.login;
 					login.cargo = "Corretor";
 					usuarioService.salvarLogin(login);
